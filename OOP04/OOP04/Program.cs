@@ -62,19 +62,5 @@ class Program
         Console.WriteLine($"Product: {product}");
         Console.WriteLine($"Unary Plus of c1: {unaryPlus}");
         Console.WriteLine($"Unary Minus of c1: {unaryMinus}");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
