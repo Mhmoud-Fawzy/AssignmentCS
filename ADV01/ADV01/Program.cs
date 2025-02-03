@@ -33,21 +33,37 @@ namespace ADV01
         
         static void Main(string[] args)
         {
-              #region Q1 The Bubble Sort algorithm has a time complexity of O(n^2) in its worst and average cases, which makes it inefficient for large datasets. How we can optimise the Bubble Sort algorithm And implement the code of this optimised bubble sort algorithm
-            //// we can use flag to check if we swaped or not
-            //int[] arr = { 9, 8, 7, 8, 4, 5, 6, 2, 10, 3, 1 };
-            //BubbleSort(arr);
-            //foreach (int num in arr)
-            //    Console.WriteLine(num);
- #endregion
+             
+            //List<int> arr = new List<int>();
+            //Console.WriteLine($"Count: {arr.Count}, Capacity: {arr.Capacity}");
+            //arr.Add(1);
+            //arr.Add(2);
+            //arr.AddRange(arr);
+            //Console.WriteLine($"Count: {arr.Count}, Capacity: {arr.Capacity}");
+            //foreach (int i in arr) Console.Write($"{i } ");
+            //Console.WriteLine(" ");
+            //arr.Add(3);
+            //Console.WriteLine($"Count: {arr.Count}, Capacity: {arr.Capacity}");
+            //arr.TrimExcess();
+            //Console.WriteLine($"Count: {arr.Count}, Capacity: {arr.Capacity}");
 
-            #region Q2
-            //Range<int> range = new Range<int>(0, 100);
-            //if (range.IsRange(1))
-            //    Console.WriteLine("1 in Range");
-            //Console.WriteLine($"The Length Of Range is {range.Length()}");
-            #endregion
+            List<int> arr = new List<int>([2,5,8,3,9,2,9,2,4,33]);
+            Console.WriteLine($"Count: {arr.Count}, Capacity: {arr.Capacity}");
+            foreach (int i in arr) Console.Write($"{i } ");
+            Console.WriteLine(" ");
+            arr[3] = 5;
+            arr.Insert(0, 100);
+            foreach (int i in arr) Console.Write($"{i} ");
+            Console.WriteLine(" ");
+            arr.AddRange([200,300,400]);
+            arr.InsertRange(1, [77, 88]);
+            foreach (int i in arr) Console.Write($"{i} ");
+            Console.WriteLine(" ");
+
+
+
 
         }
+
     }
 }
