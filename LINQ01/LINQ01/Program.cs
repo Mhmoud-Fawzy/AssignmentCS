@@ -1,7 +1,13 @@
-﻿using static LINQ01.ListGenerator;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Numerics;
+using System.Security.Cryptography;
+using static LINQ01.ListGenerator;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace LINQ01
 {
-   
+
     internal class Program
     {
         static void Main(string[] args)
@@ -19,11 +25,14 @@ namespace LINQ01
 
             #region Q2. Find all products that are in stock and cost more than 3.00 per unit.
 
-            //var Result = ProductList.Where(P => P.UnitsInStock > 0 && P.UnitPrice > 3);
+            var Result = ProductList.Where(P => P.UnitsInStock > 0 && P.UnitPrice > 3);
 
-            //Result = from P in ProductList
-            //         where P.UnitsInStock > 0 && P.UnitPrice > 3
-            //         select P;
+            Result = from P in ProductList
+                     where P.UnitsInStock > 0 && P.UnitPrice > 3
+                     select P;
+
+
+
             #endregion
 
             #region Q3. Returns digits whose name is shorter than their value.
@@ -47,9 +56,6 @@ namespace LINQ01
             #endregion
 
             #endregion
-
-
-            #region Transformation Operators
 
             #region Q1. Return a sequence of just the names of a list of products.
 
@@ -163,12 +169,153 @@ namespace LINQ01
 
             #endregion
 
+
+            #region Filteration
+
+            #region Find all products that are out of stock
+            //Find all products that are out of stock
+            //var res = ProductList.Where(p => p.UnitsInStock == 0);
+
+            //foreach (var unit in res)
+            //{
+            //    Console.WriteLine(unit);
+            //}
+
+            //Console.WriteLine("--------------------------------");
+            //res = from p in ProductList
+            //      where p.UnitsInStock == 0
+            //      select p;
+
+            //foreach (var unit in res)
+            //{
+            //    Console.WriteLine(unit);
+            //} 
+            #endregion
+            #region Find all products that are in stock and cost more than 3.00 per unit
+            //Find all products that are in stock and cost more than 3.00 per unit
+            //var res = ProductList.Where(p => p.UnitsInStock > 0 && p.UnitPrice > 3);
+
+            //foreach (var unit in res)
+            //{
+            //    Console.WriteLine(unit);
+            //}
+
+            //res =from p in ProductList
+            //    where p.UnitPrice > 3 && p.UnitsInStock == 0
+            //    select p;
+
+            //foreach (var unit in res)
+            //{
+            //    Console.WriteLine(unit);
+            //}
+
+            #endregion
+            #region Q3
+            //string[] Arr = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            ////Returns digits whose name is shorter than their value.
+
+            //var res = Arr.Where((Arr, i) => Arr.Length < i);
+            //foreach (var item in res)
+            //{
+            //    Console.WriteLine(item);
+            //} 
             #endregion
 
-            //foreach (var item in Result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+            #endregion
+
+
+            #region Q1
+            //Return a sequence of just the names of a list of products
+            //var names = ProductList.Select(p => p.ProductName);
+            //names=from p in ProductList
+            //      select p.ProductName; 
+            #endregion
+
+            #region Q2
+            //Produce a sequence of the uppercase and lowercase versions
+            //of each word in the original array(Anonymous Types).
+            //string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+
+            //var res = words.Select(words => new
             //{
-            //    Console.WriteLine($"{item}");
+            //    Uppercase = words.ToUpper(),
+            //    Lowercase = words.ToLower()
+            //});
+
+            //res = from word in words
+            //      select new
+            //      {
+            //          Uppercase = word.ToUpper(),
+            //          Lowercase = word.ToLower()
+            //      }; 
+            #endregion
+            #region Q3
+
+            //Produce a sequence containing some properties of Products,
+            //including UnitPrice which is renamed to Price in the resulting type.
+
+            //var Result = ProductList.Select(P => new
+            //{
+            //    Price = P.UnitPrice,
+            //    P.ProductName,
+            //    P.UnitsInStock
+            //});
+
+            //Result = from P in ProductList
+            //         select new
+            //         {
+            //             Price = P.UnitPrice,
+            //             P.ProductName,
+            //             P.UnitsInStock
+            //         };
+
+
+
+            #endregion
+            #region Q4
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var res = Arr.Select((X, I) => new
+            //{
+            //    X,
+            //    I,
+            //    MatchTheirPosition = (X == I) ? true : false
+            //});
+
+            //foreach (var item in res)
+            //{
+            //    Console.WriteLine(item);
             //}
+            //    #endregion
+
+            //} 
+            #endregion
+
+            int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
+            int[] numbersB = { 1, 3, 5, 7, 8 };
+
+            var res = numbersA.SelectMany(A => numbersB, (A, B) => new
+            {
+                A,
+                B
+            }).Where(P => P.A < P.B);
+            foreach (var i in res) Console.WriteLine(i);
+
+
         }
+
+
     }
 }
