@@ -1,15 +1,14 @@
-﻿using EF02.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Assignment
+namespace EF02
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            using ITIDbContext dbContext = new ITIDbContext();
-          
-
-           
+            var optionsBuilder = new DbContextOptionsBuilder<ITIDbContext>();
+            optionsBuilder.UseSqlServer("Server = .; Database = ITIDb; Trusted_Connection = true; TrustServerCertificate = True;");
+            using ITIDbContext dbContext = new ITIDbContext(optionsBuilder.Options);
         }
     }
 }

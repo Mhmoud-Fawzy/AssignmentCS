@@ -6,33 +6,16 @@ using System.Threading.Tasks;
 
 namespace EF02.Entities
 {
-    internal class Course
+    public class Course
     {
-        #region By Convension
-        //public int Id { get; set; }
-        //public string Name { get; set; } = null!;
-        //public string? Description { get; set; }
-        //public int? Duration { get; set; }
-        //public int  Top_id { get; set; }
-
-
-
-        ////public int TopicId { get; set; } 
-        #endregion
-
-        #region Fluent APIs
-        public int Id { get; set; }
-
+        public int ID { get; set; }
+        public int Duration { get; set; }
         public string Name { get; set; }
-
-        public DateOnly Duration { get; set; }
-
         public string Description { get; set; }
+        public int Top_ID { get; set; }
 
-        public int TopicId { get; set; }
-
-        public int Top_id { get; set; }
-
-        #endregion
+        public Topic Topic { get; set; }
+        public ICollection<StudCourse> EnrolledStudents { get; set; }
+        public ICollection<CourseInst> CourseInstructors { get; set; }
     }
 }

@@ -6,23 +6,14 @@ using System.Threading.Tasks;
 
 namespace EF02.Entities
 {
-    internal class Department
+    public class Department
     {
-        #region By Convension
-        public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public DateOnly HiringDate { get; set; }
-        public int InstructorId { get; set; } 
-        #endregion
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Ins_ID { get; set; }
+        public DateTime HiringDate { get; set; }
 
-        #region Fluent APIs
-        //public int Id { get; set; }
-        //public string Name { get; set; } = null!;
-        //public DateOnly HiringDate { get; set; }
-        //public int InstructorId { get; set; }
-      
-
-        #endregion
-
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Instructor> Instructors { get; set; }
     }
 }
