@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EF02.migrations
+namespace EF02.Migrations
 {
     [DbContext(typeof(ITIDbContext))]
-    [Migration("20250303044031_EF03Migration")]
-    partial class EF03Migration
+    [Migration("20250303044324_EF03")]
+    partial class EF03
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
