@@ -43,8 +43,10 @@ namespace EF04.Data
 
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
 
+            modelBuilder.Entity<EmpDep>().ToView("EmpDepView").HasNoKey();
+        }
+        public DbSet<EmpDep> EmpDepView { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         //public DbSet<Product> Products { get; set; }
