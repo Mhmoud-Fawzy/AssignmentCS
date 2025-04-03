@@ -1,43 +1,27 @@
 using System.Xml.Linq;
 
-
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+
+// Add MVC services with view support
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-//app.MapGet(pattern: "/", () => "Hello World!"); //Static
+// Configure the HTTP request pipeline
+app.UseStaticFiles();
 
+app.UseRouting();
 
-//app.MapGet("/{name}", async  context =>         //Variable
-//{
-//    var name = context.GetRouteValue("name");
-//    await context.Response.WriteAsync($"Hello, {name}!");
-//});
-
-
-//app.MapGet("/Movies/GetMovie", async context =>         
-//{
-//    await context.Response.WriteAsync("Hello, Movie!");
-//});
-
+// Map the default controller route
 app.MapControllerRoute(
     name: "Default",
-    pattern: "{controller}/{action}/{id?}"
-    //,defaults: new { Controller = "Movies", action = "Index" }
+    pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-
-//app.MapControllerRoute(
-//                        name: "DefaultPatternsRoute",
-//                        pattern: "{controller=Movies}/{action=GetMovie}/{id}"
-
-//                        );
-
-
-
-
-
-
-
+// Optional: You can uncomment and use this if you want a specific default route
+// app.MapControllerRoute(
+//     name: "DefaultPatternsRoute",
+//     pattern: "{controller=Movies}/{action=GetMovie}/{id}"
+// );
 
 app.Run();
