@@ -1,19 +1,32 @@
-﻿using Demo.DAL.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Demo.BL.DTOs;
+using Demo.BL.Factories;
+using Demo.BL.Services;
+using Demo.DAL.Repos;
 
-namespace Demo.BL.Services
+public class DepartmentService(IDeptRepo _deptRepo) : IDepartmentService
 {
-    internal class DepartmentService
+    public IEnumerable<DepartmentDto> GetAllDepartment()
     {
-        private readonly IDeptRepo _deptRepo;
+        var departments = _deptRepo.GetAll();
+        var ReturnedDepts = departments.Select(d => d.ToDeptDto());
+        return ReturnedDepts;
+    }
 
-        public DepartmentService(IDeptRepo deptRepo)
-        {
-            _deptRepo = deptRepo;
-        }
+    public DepartmentDetailsDto? GetDepartmentById(int id)
+    {
+        var department = _deptRepo.GetById(id);
+        return department is null ? null : department.DeptDetailsDto();
+    }
+
+    public int CreateDepartment(CreateDeptDto createDeptDto)
+    {
+        var res = _deptRepo.Add(createDeptDto.ToEntity());
+        return res;
+    }
+
+    public int? UpdateDepartment(CreateDeptDto createDeptDto)
+    {
+        var res = _deptRepo.Update(createDeptDto.ToEntity());
+        return res;
     }
 }

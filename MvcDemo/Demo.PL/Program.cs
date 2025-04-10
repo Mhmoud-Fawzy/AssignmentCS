@@ -1,3 +1,4 @@
+using Demo.BL.Services;
 using Demo.DAL.Contexts;
 using Demo.DAL.Models;
 using Demo.DAL.Repos;
@@ -20,11 +21,12 @@ namespace Demo.PL
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration["ConnectionString:DefaultConnection"]);
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
 
             });
 
             builder.Services.AddScoped<IDeptRepo,DeptRepo>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
             #endregion
             var app = builder.Build();
