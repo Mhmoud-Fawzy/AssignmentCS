@@ -1,34 +1,33 @@
 ﻿@model DepartmentViewModel
 
+<form asp-action="@ViewBag.Action" class="offset-md-3 col-md-6 mt-4">
 
-<form asp-action="@ViewBag.Action" class="offset-3 col-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-    <div asp-validation-summary="ModelOnly"></div>
-
-    <div class="form-group mb-3">
-        <label class="form-label" asp-for="Code"></label>
+    <div class="mb-3">
+        <label asp-for="Code" class="form-label"></label>
         <input asp-for="Code" class="form-control" />
         <span asp-validation-for="Code" class="text-danger"></span>
     </div>
-    <div class="form-group mb-3">
-        <label class="form-label" asp-for="Name"></label>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div class="form-group mb-3">
-        <label class="form-label" asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
     </div>
-    <div class="form-group mb-3">
-        <label class="form-label" asp-for="CreationDate"></label>
+
+    <div class="mb-3">
+        <label asp-for="CreationDate" class="form-label"></label>
         <input asp-for="CreationDate" class="form-control" />
     </div>
 
-
-    <div class="mt-4">
-        <input type="submit" value="Create" class="btn btn-primary" /> |
-        <a asp-action="Index" class="btn btn-light">Back to list</a>
+    <div class="d-flex justify-content-between mt-4">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>
     </div>
-
-
 </form>

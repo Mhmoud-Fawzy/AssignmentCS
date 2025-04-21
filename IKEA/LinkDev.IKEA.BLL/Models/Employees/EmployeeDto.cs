@@ -21,7 +21,7 @@ namespace LinkDev.IKEA.BLL.Models.Employees
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
-      
+
         public string Gender { get; set; } = string.Empty;
 
         [Display(Name = "Employee Type")]

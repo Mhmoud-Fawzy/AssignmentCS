@@ -102,7 +102,7 @@ namespace LinkDev.IKEA.PL.Controllers
 
         #region Edit
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int? id, [FromServices] IDepartmentServices _departmentServices)
         {
             if (id == null)
                 return BadRequest();
@@ -111,6 +111,9 @@ namespace LinkDev.IKEA.PL.Controllers
 
             if (Employee is null)
                 return NotFound();
+
+            // جلب الأقسام ووضعها في ViewData
+            ViewData["Departments"] = _departmentServices.GetAllDepartments();
 
             return View(new UpdatedEmployeeDto
             {
@@ -129,16 +132,18 @@ namespace LinkDev.IKEA.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, UpdatedEmployeeDto employee)
+        public IActionResult Edit([FromRoute] int id, UpdatedEmployeeDto employee, [FromServices] IDepartmentServices _departmentServices)
         {
             if (!ModelState.IsValid)
+            {
+                // إعادة تحميل الأقسام إذا فشل التحقق
+                ViewData["Departments"] = _departmentServices.GetAllDepartments();
                 return View(employee);
+            }
 
             var Message = string.Empty;
             try
             {
-
-
                 var result = _employeeServices.UpdateEmployee(employee) > 0;
 
                 if (result)
@@ -148,21 +153,16 @@ namespace LinkDev.IKEA.PL.Controllers
             }
             catch (Exception ex)
             {
-
-                // 1. Log Exceptions
                 _logger.LogError(ex, ex.Message);
-
-                // 2.Set Message
-                Message = _webHostEnvironment.IsDevelopment() ? Message = ex.Message : "an Error has been occured during updating the Employee :(";
-
+                Message = _webHostEnvironment.IsDevelopment() ? ex.Message : "an Error has been occured during updating the Employee :(";
             }
 
+            ViewData["Departments"] = _departmentServices.GetAllDepartments(); // حتى بعد الخطأ
             ModelState.AddModelError(String.Empty, Message);
             return View(employee);
-
         }
-
         #endregion
+
 
         #region Delete
         [HttpGet]
