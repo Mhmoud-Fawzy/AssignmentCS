@@ -1,0 +1,20 @@
+﻿@model EmployeeViewModel
+@inject IDepartmentService departmentService
+
+@{
+    ViewData["Title"] = "Edit";
+    ViewBag.Action = "Edit";
+    ViewBag.Departments = new SelectList(await departmentService.GetAllDepartmentsAsync(), nameof(DepartmentToReturnDto.Id), nameof(DepartmentToReturnDto.Name));
+} 
+
+<div class="row justify-content-center align-items-center flex-column">
+
+    <h1 class="col-6 my-4">Edit Employee</h1>
+
+    <partial name="Partials/CreateEditEmployeePartial" />
+
+</div>
+
+@section ValidationScripts {
+    <partial name="_ValidationScriptsPartial" />
+}
