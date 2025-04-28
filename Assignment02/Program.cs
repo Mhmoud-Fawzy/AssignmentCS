@@ -86,7 +86,7 @@
             //String s2 = Console.ReadLine();
             //String s3 = s1 + s2;
             //Console.WriteLine($"your new String is:{s3}");
-            #endregion   
+            #endregion
             #region Q8
             //A value 1 will be assigned to d.
             #endregion
